@@ -56,8 +56,9 @@ const defaultState: PointsLineChartState = {
     2019: false,
     2020: false,
     2021: false,
-    2022: true,
-    2023: true
+    2022: false,
+    2023: true,
+    2024: true
   }
 }
 
@@ -67,27 +68,29 @@ class PointsLineChart extends React.Component<
 > {
 
   constructor(props = {
-    minimumYear: 2018, // 2017,
-    maximumYear: 2023, // 2022,
+    minimumYear: 2019, // 2017,
+    maximumYear: 2024, // 2022,
     pointsPerYear: {
       // 2016: [],
       // 2017: [],
-      2018: [],
+      // 2018: [],
       2019: [],
       2020: [],
       2021: [],
       2022: [],
-      2023: []
+      2023: [],
+      2024: []
     },
     eventsPerYear: {
       // 2016: [],
       // 2017: [],
-      2018: [],
+      // 2018: [],
       2019: [],
       2020: [],
       2021: [],
       2022: [],
-      2023: []
+      2023: [],
+      2024: []
     }
   }) {
     super(props);
@@ -200,12 +203,13 @@ class PointsLineChart extends React.Component<
     const pointsRunningTotalsPerYear: PointsPerYear = {
       // 2016: [],
       // 2017: [],
-      2018: [],
+      // 2018: [],
       2019: [],
       2020: [],
       2021: [],
       2022: [],
-      2023: []
+      2023: [],
+      2024: []
     }
 
     const pointsPerYear: PointsPerYear = this.props.pointsPerYear;
@@ -231,15 +235,16 @@ class PointsLineChart extends React.Component<
         Math.max(
           // pointsPerYear[2016]?.length || 0,
           // pointsPerYear[2017]?.length || 0,
-          pointsPerYear[2018]?.length || 0,
+          // pointsPerYear[2018]?.length || 0,
           pointsPerYear[2019]?.length || 0,
           pointsPerYear[2020]?.length || 0,
           pointsPerYear[2021]?.length || 0,
           pointsPerYear[2022]?.length || 0,
           pointsPerYear[2023]?.length || 0,
+          pointsPerYear[2024]?.length || 0,
         ) :
         // Math.max((pointsPerYear[2022]?.length || 0) + 10, 12);
-        Math.max((pointsPerYear[2023]?.length || 0) + 10, 12);
+        Math.max((pointsPerYear[2024]?.length || 0) + 10, 12);
 
     const labels: string[] = [];
 
@@ -295,29 +300,15 @@ class PointsLineChart extends React.Component<
     //   }
     // }
 
-    if (this.state.showYears[2018]) {
-      if (chartData.datasets) {
-        chartData.datasets.push({
-          ...defaultChartDataSet,
-          label: "2018-",
-          backgroundColor: purpleLegendFillColour,
-          borderColor: purpleLineColour,
-          pointBorderColor: purpleLineColour,
-          pointHoverBackgroundColor: purpleLineColour,
-          data: getPointAndEventsPerYear(2018, pointsRunningTotalsPerYear[2018].slice(0, dataPointCount)),
-        });
-      }
-    }
-
     if (this.state.showYears[2019]) {
       if (chartData.datasets) {
         chartData.datasets.push({
           ...defaultChartDataSet,
           label: "2019-",
-          backgroundColor: slateBlueLegendFillColour,
-          borderColor: slateBlueLineColour,
-          pointBorderColor: slateBlueLineColour,
-          pointHoverBackgroundColor: slateBlueLineColour,
+          backgroundColor: purpleLegendFillColour,
+          borderColor: purpleLineColour,
+          pointBorderColor: purpleLineColour,
+          pointHoverBackgroundColor: purpleLineColour,
           data: getPointAndEventsPerYear(2019, pointsRunningTotalsPerYear[2019].slice(0, dataPointCount)),
         });
       }
@@ -332,7 +323,6 @@ class PointsLineChart extends React.Component<
           borderColor: slateBlueLineColour,
           pointBorderColor: slateBlueLineColour,
           pointHoverBackgroundColor: slateBlueLineColour,
-          borderDash: [],
           data: getPointAndEventsPerYear(2020, pointsRunningTotalsPerYear[2020].slice(0, dataPointCount)),
         });
       }
@@ -343,12 +333,27 @@ class PointsLineChart extends React.Component<
         chartData.datasets.push({
           ...defaultChartDataSet,
           label: "2021-",
+          backgroundColor: slateBlueLegendFillColour,
+          borderColor: slateBlueLineColour,
+          pointBorderColor: slateBlueLineColour,
+          pointHoverBackgroundColor: slateBlueLineColour,
+          borderDash: [],
+          data: getPointAndEventsPerYear(2021, pointsRunningTotalsPerYear[2021].slice(0, dataPointCount)),
+        });
+      }
+    }
+
+    if (this.state.showYears[2022]) {
+      if (chartData.datasets) {
+        chartData.datasets.push({
+          ...defaultChartDataSet,
+          label: "2022-",
           backgroundColor: purpleLegendFillColour,
           borderColor: purpleLineColour,
           pointBorderColor: purpleLineColour,
           pointHoverBackgroundColor: purpleLineColour,
           borderDash: [],
-          data: getPointAndEventsPerYear(2021, pointsRunningTotalsPerYear[2021].slice(0, dataPointCount)),
+          data: getPointAndEventsPerYear(2022, pointsRunningTotalsPerYear[2022].slice(0, dataPointCount)),
         });
       }
     }
@@ -391,32 +396,64 @@ class PointsLineChart extends React.Component<
     //   }
     // }
 
-    if (this.state.showYears[2022]) {
-      if (chartData.datasets) {
-        chartData.datasets.push({
-          ...defaultChartDataSet,
-          label: "2022-",
-          backgroundColor: aliceBlueLegendFillColour,
-          borderColor: aliceBlueLineColour,
-          pointBorderColor: aliceBlueLineColour,
-          pointHoverBackgroundColor: aliceBlueLineColour,
-          data: getPointAndEventsPerYear(2022, pointsRunningTotalsPerYear[2022].slice(0, dataPointCount)),
-        });
-      }
-    }
+    // if (this.state.showYears[2022]) {
+    //   if (chartData.datasets) {
+    //     chartData.datasets.push({
+    //       ...defaultChartDataSet,
+    //       label: "2022-",
+    //       backgroundColor: aliceBlueLegendFillColour,
+    //       borderColor: aliceBlueLineColour,
+    //       pointBorderColor: aliceBlueLineColour,
+    //       pointHoverBackgroundColor: aliceBlueLineColour,
+    //       data: getPointAndEventsPerYear(2022, pointsRunningTotalsPerYear[2022].slice(0, dataPointCount)),
+    //     });
+    //   }
+    // }
 
     if (this.state.showYears[2023]) {
       if (chartData.datasets) {
         chartData.datasets.push({
           ...defaultChartDataSet,
           label: "2023-",
+          backgroundColor: aliceBlueLegendFillColour,
+          borderColor: aliceBlueLineColour,
+          pointBorderColor: aliceBlueLineColour,
+          pointHoverBackgroundColor: aliceBlueLineColour,
+          data: getPointAndEventsPerYear(2023, pointsRunningTotalsPerYear[2023].slice(0, dataPointCount)),
+        });
+      }
+    }
+
+    // if (this.state.showYears[2023]) {
+    //   if (chartData.datasets) {
+    //     chartData.datasets.push({
+    //       ...defaultChartDataSet,
+    //       label: "2023-",
+    //       backgroundColor: redLegendFillColour,
+    //       borderColor: redLineColour,
+    //       pointBorderColor: redLineColour,
+    //       pointHoverBackgroundColor: redLineColour,
+    //       borderDash: [],
+
+    //       data: getPointAndEventsPerYear(2023, pointsRunningTotalsPerYear[2023].slice(0, dataPointCount)),
+
+    //       borderWidth: 4
+    //     });
+    //   }
+    // }
+
+    if (this.state.showYears[2024]) {
+      if (chartData.datasets) {
+        chartData.datasets.push({
+          ...defaultChartDataSet,
+          label: "2024-",
           backgroundColor: redLegendFillColour,
           borderColor: redLineColour,
           pointBorderColor: redLineColour,
           pointHoverBackgroundColor: redLineColour,
           borderDash: [],
 
-          data: getPointAndEventsPerYear(2023, pointsRunningTotalsPerYear[2023].slice(0, dataPointCount)),
+          data: getPointAndEventsPerYear(2024, pointsRunningTotalsPerYear[2024].slice(0, dataPointCount)),
 
           borderWidth: 4
         });

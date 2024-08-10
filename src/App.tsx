@@ -25,8 +25,8 @@ const competitionNames = [
   "spanish-la-liga"
 ];
 
-const minimumYear = 2018; //2017;
-const maximumYear = 2023 //2022;
+const minimumYear = 2019; // 2018; //2017;
+const maximumYear = 2024; // 2023 //2022;
 
 function App() {
   // const [footballScoresMatchListData, setFootballScoresMatchListData] = useState<
